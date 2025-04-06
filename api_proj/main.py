@@ -4,11 +4,20 @@ from . import models  # Import from models.py
 app = FastAPI()
 todos = []
 
-@app.get("/Todo", response_model=list[models.Todo], tags=["Read"],responses={"200":"Succefully executed","404":"List Empty"})
+@app.get("/Todo", response_model=list[models.Todo], tags=["Read"],responses={
+    200:{"description": "Succefully executed"},
+    404:{"description": "List Empty"}
+    })
 async def send_todos():
     return todos
 
-@app.post("/Todo", response_model=models.Todo, tags=["Create"],response_description=(),responses={"200":"Succefully executed","400 ":"Already Exsist"})
+@app.post("/Todo", 
+          response_model=models.Todo, 
+          tags=["Create"],
+          responses={
+              200:{"description": "Succefully executed"},
+              400:{"description": "Already Exsist"}
+              })
 async def create(todo: models.Todo):
     if any(t.name == todo.name for t in todos):
         raise HTTPException(status_code=400, detail=f"Todo with name '{todo.name}' already exists")
