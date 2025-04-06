@@ -15,7 +15,17 @@ async def create(todo: models.Todo):
     todos.append(todo)
     return todo
 
-@app.put("/Todo/{name}", response_model=models.Todo, tags=["Update"])
+@app.put(
+    "/Todo/{name}", 
+    response_model=models.Todo, 
+    tags=["Update"],
+    summary="Update a Todo",
+    description="Update the content of a todo by its name.",
+    responses={
+        200: {"description": "Todo updated successfully."},
+        404: {"description": "Todo not found with the given name."}
+    }
+)
 async def update_todo(name: str, updated_todo: models.Todo):
     for i, todo in enumerate(todos):
         if todo.name == name:
@@ -23,7 +33,16 @@ async def update_todo(name: str, updated_todo: models.Todo):
             return updated_todo
     raise HTTPException(status_code=404, detail=f"Todo with name '{name}' not found")
 
-@app.delete("/Todo/{name}", tags=["Delete"])
+@app.delete(
+    "/Todo/{name}", 
+    tags=["Delete"],
+    summary="Delete a Todo",
+    description="Delete a todo by its name.",
+    responses={
+        200: {"description": "Todo deleted successfully."},
+        404: {"description": "Todo not found with the given name."}
+    }
+)
 async def delete_todo(name: str):
     for i, todo in enumerate(todos):
         if todo.name == name:
