@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.pip/
+
+# VS Code settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Python environment
+*.env
+*.env.*
+
+# Logs
+*.log
+
+# Test cache
+.cache/
+
+# mypy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# FastAPI related
+*.sqlite3
+
+# IDE specific
+.idea/
