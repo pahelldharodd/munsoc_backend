@@ -1,5 +1,4 @@
-from pydantic import BaseModel
-from typing import Optional
+from pydantic import BaseModel , HttpUrl
 
 class Todo(BaseModel):
     """
@@ -8,4 +7,4 @@ class Todo(BaseModel):
     """
     # id:int
     name: str  # The name/key for the URL
-    url: str   # The actual URL
+    url: HttpUrl  # Ensures it's a valid HTTP/HTTPS URL
